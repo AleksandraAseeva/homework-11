@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  background-color: black;
+  background: url(./images/1_4434.jpg), #0b1d27;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 20px;
+}
+.main {
+  background-color: #21266e;
+  max-width: 840px;
+  margin: auto;
+  box-shadow: rgba(60, 0, 255, 0.09) 0px 2px 1px,
+    rgba(0, 64, 255, 0.09) 0px 4px 2px, rgba(0, 13, 255, 0.142) 0px 8px 4px,
+    rgba(6, 4, 30, 0.11) 0px 16px 8px, rgba(0, 0, 255, 0.152) 0px 32px 16px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  color: #fff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff;
+  font-family: "Edu AU VIC WA NT Dots", cursive;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#messages {
+  background-color: white;
+  margin: 20px;
+  padding: 0.5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(255, 255, 255, 0.871) 0px 8px 16px -8px;
+}
+
+input {
+  margin: 20px;
+  height: 25px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 18px;
+  padding-bottom: 3px;
+}
+
+#sendButton {
+  height: 28px;
+  border: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+#sendButton:hover {
+  background-color: rgb(132, 17, 78);
+  color: white;
+}
+
+@media (max-width: 330px) {
+  #messages, input {
+    margin: 8px;
+  }
+}
+
+@media (max-width: 310px) {
+  #sendButton {
+    margin-left: 8px;
+  }
+}
