@@ -1,40 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebSocket client</title>
-    <link rel="stylesheet" href="./style.css">
-    
-</head>
-<body>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <div class="main">
-        <div class="title">
-            <h1>WebSocket client</h1>
-        </div>
-        <div id="messages"></div>
-        <input type="text" id="messageInput" placeholder=" Введите сообщение">
-        <button id="sendButton">Отправить</button>
+      <div class="title">
+        <h1>WebSocket client</h1>
+      </div>
+      <div id="messages"></div>
+      <input
+        type="text"
+        name="field"
+        id="messageInput"
+        placeholder=" Введите сообщение"
+      />
+      <button id="sendButton">Отправить</button>
     </div>
     <script>
-        const socket = new WebSocket('ws:localhost:8080');
-        console.log('before open', socket.readyState)
-        socket.addEventListener('open', function(event){
-            console.log('Соединение установлено')
-            console.log('open', socket.readyState)
-        })
-        socket.addEventListener('message', function(event) {
-            const messagiesDiv = document.getElementById('messages');
-            messagiesDiv.innerHTML += `<p>${event.data}</p>`;
-            
-        })
-        document.getElementById('sendButton').addEventListener('click', function() {
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value;
-            socket.send(message);
-            messageInput.value = '';
-            
-        })
+      const socket = new WebSocket("ws:localhost:8080");
+      console.log("before open", socket.readyState);
+      
+      socket.addEventListener("open", function (event) {
+        console.log("Соединение установлено");
+        console.log("open", socket.readyState);
+      });
+
+      socket.addEventListener("message", function (event) {
+        const messagiesDiv = document.getElementById("messages");
+        messagiesDiv.innerHTML += `<p>${event.data}</p>`;
+        messagiesDiv.scrollTop = messagiesDiv.scrollHeight;
+      });
+
+      // Чтобы избежать перекликания событий на кнопку и клавишу Enter, можно реализовать отдельную функцию sendMessage и вызвать ее как по клику на кнопку, так и при нажатии клавиши Enter. Вот как это можно сделать:
+      function sendMessage() {
+        const messageInput = document.getElementById("messageInput");
+        const message = messageInput.value.trim();
+
+        if (message) {
+          // Проверка, чтобы не отправлять пустые сообщения
+          socket.send(message);
+          messageInput.value = ""; // Очищаем поле ввода после отправки
+        }
+      }
+
+      document.getElementById("sendButton").addEventListener("click", function () {
+        sendMessage()
+        });
+
+      document.querySelector("input").addEventListener("keydown", function (e) {
+        if (e.keyCode === 13) {
+            sendMessage()
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
